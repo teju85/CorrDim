@@ -1,8 +1,8 @@
 
-                     *** corrdim ***
+                     *** CorrDim ***
 
 0. INTRODUCTION:
-    'corrdim' is an application to find the correlation-dimension of a
+    'CorrDim' is an application to find the correlation-dimension of a
 given set of data. This uses the technique introduced by Grassberger
 and Procaccia [1]. It also comes with some pre-defined maps on which one
 can find the correlation dimension! Also, if you have a set of points
@@ -72,7 +72,13 @@ add a new map into the already available list of maps:
     name of this header file.
 
 
-7. CONTACT:
+7. DOCUMENTATION:
+    All documentation related to the classes can be found in 'docs/' folder.
+To start with, you can open the docs/html/index.html file and then start
+navigating through the links you find inside this file.
+
+
+8. CONTACT:
     If you have any suggestions, comments or need me to add another chaotic
 map into this program, feel free to contact me:  rao.thejaswi@gmail.com
 
