@@ -78,7 +78,26 @@ To start with, you can open the docs/html/index.html file and then start
 navigating through the links you find inside this file.
 
 
-8. CONTACT:
+8. PROFILE:
+    In order to profile this code, just do 'make' first in order to compile
+the program, then run 'make profile'. After this completes, you'll see 2 png
+files with the name 'results_time.png' and 'results_mem.png' in the current
+folder. They are the results of run-time and memory profiling (respectively)
+across a multiple values of number of elements. And they are being compared
+against both the modes (normal and low-memory version)
+
+
+9. LIMITATIONS:
+   . This program has currently been tested on Linux platform only.
+
+
+10. DEPENDENCIES:
+   . g++
+   . gnuplot
+   . bash
+   . perl
+
+
+11. CONTACT:
     If you have any suggestions, comments or need me to add another chaotic
 map into this program, feel free to contact me:  rao.thejaswi@gmail.com
-

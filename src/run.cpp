@@ -27,7 +27,8 @@ using namespace std;
 
 
 
-REAL runCorrDim(const CmdLine& cmd, Timer& tim, REAL* log_cr, REAL* log_r, REAL* inter, int* hist, REAL* bins, unsigned long int& totalMem) {
+REAL runCorrDim(const CmdLine& cmd, Timer& tim, REAL* log_cr, REAL* log_r,
+		REAL* inter, int* hist, REAL* bins, unsigned long int& totalMem) {
     fprintf(stdout, "Initializing 'CorrDim'... ");
     tim.start();
     CorrDim cd = CorrDim(cmd.array, cmd.numEle, cmd.dimension);
@@ -49,7 +50,8 @@ REAL runCorrDim(const CmdLine& cmd, Timer& tim, REAL* log_cr, REAL* log_r, REAL*
 }
 
 
-REAL runCorrDimLowMem(const CmdLine& cmd, Timer& tim, REAL* log_cr, REAL* log_r, REAL* inter, int* hist, REAL* bins, unsigned long int& totalMem) {
+REAL runCorrDimLowMem(const CmdLine& cmd, Timer& tim, REAL* log_cr, REAL* log_r,
+		      REAL* inter, int* hist, REAL* bins, unsigned long int& totalMem) {
     fprintf(stdout, "Initializing 'CorrDimLowMem'... ");
     tim.start();
     CorrDimLowMem cd = CorrDimLowMem(cmd.array, cmd.numEle, cmd.dimension);
@@ -76,11 +78,8 @@ void printMemory(unsigned long int totalMem) {
     else if(!(totalMem >> 20)) {
         fprintf(stdout, "Maximum memory usage (in kB): ~%lu\n", totalMem>>10);
     }
-    else if(!(totalMem >> 30)) {
-        fprintf(stdout, "Maximum memory usage (in MB): ~%lu\n", totalMem>>20);
-    }
     else {
-        fprintf(stdout, "Maximum memory usage (in GB): ~%lu\n", totalMem>>30);
+        fprintf(stdout, "Maximum memory usage (in MB): ~%lu\n", totalMem>>20);
     }
 }
 
@@ -142,6 +141,8 @@ void run(const CmdLine& cmd) {
 
 
 int main(int argc, char** argv) {
+    Timer tim;
+    tim.start();
     int i = 1;
     CmdLine cmd;
     // command line argument parsing
@@ -195,6 +196,6 @@ int main(int argc, char** argv) {
     cmd.array = cmd.map->generateVectors(cmd.numEle, i, argc, argv);
     cmd.dimension = cmd.map->getDimension();
     run(cmd);
+    tim.stopAndPrintTime("Total time taken: %f s\n");
     return 0;
 }
-

@@ -17,9 +17,14 @@ EXE     := corrdim
 TEMP    := $(shell find . -name "*~" -o -name ".*~")
 MAPS    := maps.list
 MAPS_INC:= src/allMaps.h
+PROFILE := .results.plt
 
 
-default: genMaps doc ${EXE}
+default: doc genMaps ${EXE}
+
+
+profile:
+	./profile.pl running_from_Makefile
 
 
 genMaps:
@@ -47,4 +52,4 @@ ${EXE}: ${COBJ}
 clean:
 	rm -f ${EXE}
 	rm -f ${COBJ}
-	rm -f ${TEMP} ${MAPS} ${MAPS_INC}
+	rm -f ${TEMP} ${MAPS} ${MAPS_INC} ${PROFILE}
