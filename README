@@ -1,0 +1,78 @@
+
+                     *** corrdim ***
+
+0. INTRODUCTION:
+    'corrdim' is an application to find the correlation-dimension of a
+given set of data. This uses the technique introduced by Grassberger
+and Procaccia [1]. It also comes with some pre-defined maps on which one
+can find the correlation dimension! Also, if you have a set of points
+not particularly of any maps, you can still use the 'custom' map mode to
+inject a file containing those vectors for analysis. For more info, use
+the '-h' option of the final executable to know the details.
+
+
+1. COMPILATION:
+    Just enter into the directory containing this file and run 'make'!
+You should be done with the compilation! This will generate an executable
+by the name 'corrdim'. Use the '-h' option on this exe to know the usage.
+
+
+2. PLOTTING OF THE LOG(CR) V/S LOG(R):
+    There's a shell script by the name 'plot.sh'. This should generate the
+plot of LOG(CR) v/s LOG(R) and also display the plot (if one insists).
+In order to run this script, you should have run the 'corrdim' with the
+'-dump' option. Then, run this script as follows:
+    plot.sh -cr <file> -png <outputPng>
+Where: <file> = name of the file passed to '-dump' option of 'corrdim'.
+       <outputPng> = name of the PNG file containing the plot.
+    For more details on this script, use the '-h' option.
+
+
+3. FILE FORMAT FOR '-map CustomVectors':
+    For custom vectors, you need to pass a file containing the vectors for
+the program to be read them in. Each line of the file should contain one
+such vector. (Note that a vector is an N-dimensional entity)
+
+
+4. USING THE '-lowmem' OPTION:
+    Since the memory usage of distance matrix is of the order O(N^2), the
+demand for memory increases pretty fast for larger values of N. In those
+cases, one can trade speed for memory by using the '-lowmem' option. When
+this option is passed, the program will use the lower memory version of
+the 'CorrDim' class.
+
+
+5. PLOTTING OF THE HISTOGRAM OF DISTANCE MATRIX:
+    The script used to plot the log_cr/log_r values, can also be used to
+plot the histogram of the distance matrix and also display the plot
+(if one insists). In order to do this, you should have run the 'corrdim'
+with the '-dump-dist-hist' option. Then, run this script as follows:
+    plot.sh -hist <file> -png <outputPng>
+Where: <file> = name of the file passed to '-dump-dist-hist' option of
+                'corrdim' executable.
+       <outputPng> = name of the PNG file containing the plot.
+    For more details on this script, use the '-h' option.
+
+
+6. ADDING A NEW MAP:
+    This library has been created in a fashion so as to make the process of
+adding a new map as easy and as automated as possible, while not compromising
+too much on performance! Here are the steps you need to follow in order to
+add a new map into the already available list of maps:
+ a. 'cd' into src/maps
+ b. Create a header file with the name of the map you want to add.
+ c. Inside this file, create a class representing this map and inherit it
+    from the 'ChaoticMap' abstract base class.
+ d. Add all the purely virtual functions from the base class. In this process
+    you can take help from the already existing inherited classes in this
+    folder.
+ e. Go back to the main folder and run 'make'! Or, to be on a safer side,
+    do 'make clean && make'.
+ f. The catch here is that the name of the class must match 'exactly' to the
+    name of this header file.
+
+
+7. CONTACT:
+    If you have any suggestions, comments or need me to add another chaotic
+map into this program, feel free to contact me:  rao.thejaswi@gmail.com
+
