@@ -6,6 +6,7 @@ CLIBS   := -lm
 CSRC    := $(shell find src -name "*.cpp")
 COBJ    := $(patsubst %.cpp,%.cppo,${CSRC})
 INCLUDES:= -Isrc
+DCFG    := .doxygenConfig
 
 #NVCC      := /usr/local/cuda/bin/nvcc
 #NVCCFLAGS := -g
@@ -18,11 +19,15 @@ MAPS    := maps.list
 MAPS_INC:= src/allMaps.h
 
 
-default: genMaps ${EXE}
+default: genMaps doc ${EXE}
 
 
 genMaps:
 	./generateMapList.sh running_from_Makefile
+
+
+doc:
+	doxygen ${DCFG}
 
 
 ${EXE}: ${COBJ}
